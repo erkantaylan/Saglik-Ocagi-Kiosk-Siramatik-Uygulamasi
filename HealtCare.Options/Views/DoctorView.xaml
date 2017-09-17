@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HealtCare.Options.Views.DoctorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Horizontal">
+        <Image Height="40" Width="40" Margin="3"
+               VerticalAlignment="Center"
+               Source="{Binding Path=ImagePath, Converter={StaticResource PathToImageSourceConverter}}" />
+        <TextBlock Text="{Binding Path=Title}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center" 
+                   Margin="4 4 8 4"
+                   FontSize="16"/>
+        <TextBlock Text="{Binding Path=Name}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   FontSize="16"/>
+
+    </StackPanel>
+</UserControl>

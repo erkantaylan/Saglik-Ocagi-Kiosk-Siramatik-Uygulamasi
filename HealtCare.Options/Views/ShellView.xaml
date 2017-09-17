@@ -1,0 +1,37 @@
+﻿<controls:MetroWindow x:Class="HealtCare.Options.Views.ShellView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:HealtCare.Options.Views"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:viewModels="clr-namespace:HealtCare.Options.ViewModels"
+                      mc:Ignorable="d"
+                      Title="KIOSK AYAR"
+                      Height="470" Width="520"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="2"
+                      WindowStartupLocation="CenterScreen">
+    <controls:MetroTabControl Background="Transparent">
+        <controls:MetroTabItem Header="Doktor Ekle">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <local:AddDoctorView>
+                    <local:AddDoctorView.DataContext>
+                        <viewModels:AddDoctorViewModel />
+                    </local:AddDoctorView.DataContext>
+                </local:AddDoctorView>
+            </ScrollViewer>
+        </controls:MetroTabItem>
+        <controls:MetroTabItem Header="Güncelle">
+            <local:EditDoctorView>
+                <local:EditDoctorView.DataContext>
+                    <viewModels:EditDoctorViewModel />
+                </local:EditDoctorView.DataContext>
+            </local:EditDoctorView>
+        </controls:MetroTabItem>
+        <controls:MetroTabItem Header="Diğer">
+            <local:OthersView />
+        </controls:MetroTabItem>
+    </controls:MetroTabControl>
+</controls:MetroWindow>

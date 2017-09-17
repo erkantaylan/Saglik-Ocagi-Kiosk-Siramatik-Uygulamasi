@@ -1,0 +1,42 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using HealtCare.Common.Controllers;
+
+namespace HealtCare.Common.Models {
+
+    public class Doctor : ISaveble {
+
+        public Doctor() {
+            if (Doctors.Count == 0) {
+                Id = 1;
+            } else {
+                Id = Doctors.Max(o => o.Id) + 1;
+            }
+
+            Doctors.Add(this);
+        }
+
+        public static List<Doctor> Doctors { get; private set; } = new List<Doctor>();
+
+        public int Id { get; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Title { get; set; }
+        public string Name { get; set; }
+        public string ImagePath { get; set; }
+
+
+        void ISaveble.Save() {
+            Save();
+        }
+
+        public static void Save() {
+            Saver<List<Doctor>>.Save(Doctors, MagicStrings.DoctorsTxtLocation);
+        }
+
+        public static void Load() {
+            Doctors = Loader<List<Doctor>>.Load(MagicStrings.DoctorsTxtLocation);
+        }
+    }
+
+}
