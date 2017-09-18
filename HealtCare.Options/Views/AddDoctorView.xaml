@@ -18,16 +18,16 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
-                 Text="{Binding Path=Title}"
+                 Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Doktor Ünvan" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1"
-                 Text="{Binding Path=Name}"
+                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Doktor Adı" />
         <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                 Text="{Binding Path=Username}"
+                 Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Kullanıcı Adı" />
         <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                 Text="{Binding Path=Password}"
+                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Parola" />
         <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0">
             <Button Content="resim seç"
@@ -43,7 +43,6 @@
         </DockPanel>
         <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0"
                 VerticalAlignment="Bottom"
-                
                 Command="{Binding Path=SaveCommand}"
                 Content="KAYDET" />
     </Grid>

@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:converters="clr-namespace:HealtCare.Common.Converters;assembly=HealtCare.Common">
+             xmlns:converters="clr-namespace:HealtCare.Common.Converters;assembly=HealtCare.Common"
+             xmlns:views="clr-namespace:HealtCare.Options.Views">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,12 +24,19 @@
                 <Setter Property="controls:TextBoxHelper.UseFloatingWatermark" Value="True" />
             </Style>
 
+            <Style TargetType="views:NumericTextBox" BasedOn="{StaticResource MetroTextBox}">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="controls:TextBoxHelper.UseFloatingWatermark" Value="True" />
+            </Style>
+
             <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}">
                 <Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Upper" />
                 <Setter Property="Margin" Value="3" />
                 <Setter Property="Padding" Value="3" />
                 <Setter Property="Height" Value="40" />
-                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="BorderThickness" Value="0" />
             </Style>
             <converters:PathToImageSourceConverter x:Key="PathToImageSourceConverter" />
         </ResourceDictionary>

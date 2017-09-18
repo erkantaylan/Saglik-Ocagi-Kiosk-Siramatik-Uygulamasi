@@ -8,7 +8,7 @@
                       xmlns:viewModels="clr-namespace:HealtCare.Options.ViewModels"
                       mc:Ignorable="d"
                       Title="KIOSK AYAR"
-                      Height="470" Width="520"
+                      Height="620" Width="444"
                       BorderBrush="{DynamicResource AccentColorBrush}"
                       GlowBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="2"

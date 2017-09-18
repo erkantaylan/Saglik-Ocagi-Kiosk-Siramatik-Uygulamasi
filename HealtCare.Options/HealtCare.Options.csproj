@@ -67,6 +67,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\AddDoctorViewModel.cs" />
     <Compile Include="ViewModels\EditDoctorViewModel.cs" />
+    <Compile Include="ViewModels\OthersViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\AddDoctorView.xaml.cs">
       <DependentUpon>AddDoctorView.xaml</DependentUpon>
@@ -77,6 +78,7 @@
     <Compile Include="Views\EditDoctorView.xaml.cs">
       <DependentUpon>EditDoctorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NumericTextBox.cs" />
     <Compile Include="Views\OthersView.xaml.cs">
       <DependentUpon>OthersView.xaml</DependentUpon>
     </Compile>

@@ -16,7 +16,9 @@
                   DockPanel.Dock="Top"
                   Padding="2"
                   HorizontalAlignment="Left">
-            <ListBox MinWidth="200"
+            <ListBox x:Name="list"
+                     MinWidth="200"
+                     SelectedItem="{Binding Path=Current}"
                      ItemsSource="{Binding Path=Doctors}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Doctor}">
@@ -27,6 +29,8 @@
         </GroupBox>
         <Button DockPanel.Dock="Top"
                 Grid.Row="1"
-                Content="SİL" />
+                Content="SİL"
+                Command="{Binding Path=RemoveCommand}"
+                CommandParameter="{Binding ElementName=list, Path=SelectedItem}" />
     </Grid>
 </UserControl>

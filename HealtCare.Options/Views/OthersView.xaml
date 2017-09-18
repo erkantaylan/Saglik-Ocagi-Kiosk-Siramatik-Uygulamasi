@@ -4,15 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:viewModels="clr-namespace:HealtCare.Options.ViewModels"
+             xmlns:views="clr-namespace:HealtCare.Options.Views"
              mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:OthersViewModel />
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0"
+                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Eczanenin Adı" />
-        <TextBox Grid.Row="1"
-                 controls:TextBoxHelper.Watermark="Kapatma Şifresi" />
+        <views:NumericTextBox Grid.Row="1"
+                              Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                              controls:TextBoxHelper.Watermark="Kapatma Şifresi" />
+        <Button Grid.Row="2"
+                Content="KAYDET"
+                VerticalAlignment="Top"
+                Command="{Binding Path=SaveCommand}" />
     </Grid>
 </UserControl>
