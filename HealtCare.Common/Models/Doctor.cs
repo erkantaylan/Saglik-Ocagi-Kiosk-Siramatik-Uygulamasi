@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HealtCare.Common.Controllers;
+using Newtonsoft.Json;
 
 namespace HealtCare.Common.Models {
 
@@ -24,7 +25,8 @@ namespace HealtCare.Common.Models {
         public string Title { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
-
+        [JsonIgnore]
+        public List<Patient> Patients { get; set; }
 
         void ISaveble.Save() {
             Save();

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="HealtCare.Kiosk.Views.ExitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:viewModels="clr-namespace:HealtCare.Kiosk.ViewModels"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="MinWidth" Value="24" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Content="0" Command="{Binding Path=ExitCommand}" CommandParameter="0"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="1"  Command="{Binding Path=ExitCommand}" CommandParameter="1"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="2"  Command="{Binding Path=ExitCommand}" CommandParameter="2"/>
+        <Button Grid.Row="0" Grid.Column="3" Content="3"  Command="{Binding Path=ExitCommand}" CommandParameter="3"/>
+        <Button Grid.Row="0" Grid.Column="4" Content="4"  Command="{Binding Path=ExitCommand}" CommandParameter="4"/>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="5"  Command="{Binding Path=ExitCommand}" CommandParameter="5"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="6"  Command="{Binding Path=ExitCommand}" CommandParameter="6"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="7"  Command="{Binding Path=ExitCommand}" CommandParameter="7"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="8"  Command="{Binding Path=ExitCommand}" CommandParameter="8"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="9"  Command="{Binding Path=ExitCommand}" CommandParameter="9"/>
+        <Button Grid.Row="0" Grid.Column="5" Content="GERİ" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <!--<Button Grid.Row="0" Grid.Column="5" Content="RESET" />-->
+    </Grid>
+</UserControl>
