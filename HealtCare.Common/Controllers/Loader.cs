@@ -9,7 +9,8 @@ namespace HealtCare.Common.Controllers {
                 return new T();
             }
             string json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<T>(json);
+            T o = JsonConvert.DeserializeObject<T>(json);
+            return o == null ? new T() : o;
         }
     }
 
