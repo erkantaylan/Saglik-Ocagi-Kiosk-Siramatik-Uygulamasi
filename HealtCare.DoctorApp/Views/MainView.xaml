@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="HealtCare.DoctorApp.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:HealtCare.DoctorApp.Views"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="MaxWidth" Value="300" />
+            <Setter Property="MinWidth" Value="100" />
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <GroupBox Header="HASTA LİSTESİ" Width="260">
+            <ItemsControl>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2"
+                            Background="#139eda">
+                    <TextBlock Text="58" Margin="4 2 2 2"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Padding="2 0 2 0"
+                               Foreground="#139eda" Background="White"/>
+                    <TextBlock Text="65 yas ustu" Margin="0 2 2 2"/>
+                </StackPanel>
+            </ItemsControl>
+        </GroupBox>
+        <GroupBox Header="" MinWidth="300" HorizontalAlignment="Left">
+            <StackPanel>
+                <Button Content="ÇAĞIR"/>
+                <Button Content="SİL"/>
+                <TextBox Margin="2"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         MinHeight="100"/>
+                <Button Content="MESAJ GÖNDER"/>
+                <Button Content="KİOSK KAPAT" />
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</UserControl>
