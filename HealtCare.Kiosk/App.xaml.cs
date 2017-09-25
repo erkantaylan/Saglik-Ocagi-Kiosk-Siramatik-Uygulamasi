@@ -7,6 +7,7 @@ namespace HealtCare.Kiosk {
 
         protected override void OnStartup(StartupEventArgs e) {
             base.OnStartup(e);
+            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             new Shell().Show();
         }
 

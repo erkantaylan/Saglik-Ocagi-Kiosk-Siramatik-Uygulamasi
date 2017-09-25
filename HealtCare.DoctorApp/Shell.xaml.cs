@@ -1,10 +1,9 @@
-﻿using HealtCare.Common;
-using HealtCare.Common.Models;
+﻿using System.Windows;
+using HealtCare.Common;
 using HealtCare.Common.RFI;
 using HealtCare.DoctorApp.ViewModels;
 using Hik.Communication.Scs.Communication.EndPoints.Tcp;
 using Hik.Communication.ScsServices.Client;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace HealtCare.DoctorApp {
 
@@ -13,6 +12,7 @@ namespace HealtCare.DoctorApp {
 
         public Shell() {
             InitializeComponent();
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             client = ScsServiceClientBuilder.CreateClient<IDoctorService>(new ScsTcpEndPoint("127.0.0.1", MagicStrings.Port));
             client.Connect();
             //string result = client.ServiceProxy.Login("garfield", "1234");
