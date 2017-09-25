@@ -18,7 +18,8 @@
               Padding="1"
               VerticalAlignment="Top"
               controls:ControlsHelper.HeaderFontSize="20"
-              controls:ControlsHelper.HeaderFontWeight="Black">
+              controls:ControlsHelper.HeaderFontWeight="Black"
+              IsEnabled="{Binding Path=NotAtVacation}">
         <!--<GroupBox.HeaderTemplate>
             <DataTemplate>
                 <TextBlock Text="{Binding}" 

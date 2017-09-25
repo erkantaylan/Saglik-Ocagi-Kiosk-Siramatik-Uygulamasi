@@ -62,6 +62,7 @@
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Controllers\Loader.cs" />
     <Compile Include="Controllers\Saver.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\PathToImageSourceConverter.cs" />
     <Compile Include="MagicStrings.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Models\LoginResult.cs" />
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

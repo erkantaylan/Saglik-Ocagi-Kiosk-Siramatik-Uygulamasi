@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using HealtCare.Common.Annotations;
 using HealtCare.Common.Controllers;
 using Newtonsoft.Json;
 
 namespace HealtCare.Common.Models {
 
-    public class Doctor : ISaveble {
+    public partial class Doctor : ISaveble {
+        private string holidayEndDate;
 
         public Doctor() {
             if (Doctors.Count == 0) {
@@ -18,14 +21,6 @@ namespace HealtCare.Common.Models {
             Doctors.Add(this);
         }
 
-        public static Doctor InitializeDoctor(string json) {
-            return JsonConvert.DeserializeObject<Doctor>(json);
-        }
-
-        public string SerialzieDoctor() {
-            return JsonConvert.SerializeObject(this);
-        }
-
         [JsonIgnore]
         public static List<Doctor> Doctors { get; private set; } = new List<Doctor>();
 
@@ -35,13 +30,28 @@ namespace HealtCare.Common.Models {
         public string Title { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
-        public bool AtHoliday { get; set; }
-        public string HolidayEndDate { get; set; }
+
+        public string HolidayEndDate {
+            get => holidayEndDate;
+            set {
+                holidayEndDate = value;
+                OnPropertyChanged(nameof(HolidayEndDate));
+            }
+        }
+
         [JsonIgnore]
-        public List<Patient> Patients { get; set; }
+        public List<Patient> Patients { get; set; } = new List<Patient>();
 
         void ISaveble.Save() {
             Save();
+        }
+
+        public static Doctor InitializeDoctor(string json) {
+            return JsonConvert.DeserializeObject<Doctor>(json);
+        }
+
+        public string SerialzieDoctor() {
+            return JsonConvert.SerializeObject(this);
         }
 
         public static void Save() {
@@ -50,6 +60,15 @@ namespace HealtCare.Common.Models {
 
         public static void Load() {
             Doctors = Loader<List<Doctor>>.Load(MagicStrings.DoctorsTxtLocation);
+        }
+    }
+
+    public partial class Doctor : INotifyPropertyChanged {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

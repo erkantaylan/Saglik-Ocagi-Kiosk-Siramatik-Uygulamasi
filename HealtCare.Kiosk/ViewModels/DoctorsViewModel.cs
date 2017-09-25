@@ -6,7 +6,7 @@ using HealtCare.Kiosk.Annotations;
 
 namespace HealtCare.Kiosk.ViewModels {
 
-    internal partial class DoctorsViewModel {
+    internal sealed partial class DoctorsViewModel {
         public DoctorsViewModel() {
             HealtCareName = "ERKAN TAYLAN ABDULL REZZAK BILMEM NE "
                             + "SAGLIK OCAGI AS LMT STI FUCK YOU BITCH"
@@ -23,11 +23,11 @@ namespace HealtCare.Kiosk.ViewModels {
         public string HealtCareName { get; set; }
     }
 
-    internal partial class DoctorsViewModel : INotifyPropertyChanged {
+    internal sealed partial class DoctorsViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
