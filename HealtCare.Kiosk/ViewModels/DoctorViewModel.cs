@@ -1,24 +1,38 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using HealtCare.Common.Commands;
+using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
 
 namespace HealtCare.Kiosk.ViewModels {
 
     internal partial class DoctorViewModel {
-        public ICommand NormalCommand => new ActionCommand(TakeOrder, CanTakeOrder);
-        public ICommand PregnantCommand => new ActionCommand(TakeOrder, CanTakeOrder);
-        public ICommand DisabledCommand => new ActionCommand(TakeOrder, CanTakeOrder);
-        public ICommand OldCommand => new ActionCommand(TakeOrder, CanTakeOrder);
-        public ICommand ChildCommand => new ActionCommand(TakeOrder, CanTakeOrder);
+        private Doctor doctor;
+
+        public DoctorViewModel(Doctor doctor) {
+            this.doctor = doctor;
+            Name = doctor.Title + " " + doctor.Name;
+            ImagePath = doctor.ImagePath;
+        }
+
+        public string Name { get; set; }
+        public string ImagePath { get; set; }
+
+        public ICommand TakeLineCommand => new ActionCommand(TakeOrder, CanTakeOrder);
 
         private bool CanTakeOrder(object obj) {
             return true;
         }
 
         private void TakeOrder(object obj) {
-            
+            doctor.Patients.Add(
+                new Patient {
+                    DoctorId = doctor.Id,
+                    Type = obj.ToString()
+                });
+            MessageBox.Show($"{Name}|{obj}");
         }
     }
 
@@ -26,7 +40,7 @@ namespace HealtCare.Kiosk.ViewModels {
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        protected virtual void OnPropertyChanged( string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

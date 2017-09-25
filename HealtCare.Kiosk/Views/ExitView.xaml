@@ -12,7 +12,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Margin" Value="1" />
-            <Setter Property="MinWidth" Value="24" />
+            <Setter Property="MinWidth" Value="28" />
         </Style>
     </UserControl.Resources>
     
@@ -23,7 +23,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -41,8 +40,6 @@
         <Button Grid.Row="1" Grid.Column="2" Content="7"  Command="{Binding Path=ExitCommand}" CommandParameter="7"/>
         <Button Grid.Row="1" Grid.Column="3" Content="8"  Command="{Binding Path=ExitCommand}" CommandParameter="8"/>
         <Button Grid.Row="1" Grid.Column="4" Content="9"  Command="{Binding Path=ExitCommand}" CommandParameter="9"/>
-        <Button Grid.Row="0" Grid.Column="5" Content="GERİ" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-        <!--<Button Grid.Row="0" Grid.Column="5" Content="RESET" />-->
     </Grid>
 </UserControl>

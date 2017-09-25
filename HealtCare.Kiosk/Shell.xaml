@@ -3,12 +3,107 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:local="clr-namespace:HealtCare.Kiosk"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:views="clr-namespace:HealtCare.Kiosk.Views"
-                      mc:Ignorable="d">
-    <Grid >
-        <views:ExitView HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      mc:Ignorable="d"
+                      WindowStartupLocation="CenterOwner"
+                      Width="1366"
+                      Height="768"
+                      WindowStyle="None"
+                      ResizeMode="NoResize"
+                      controls:ShowTitleBar="False"
+                      IgnoreTaskbarOnMaximize="True"
+                      IsCloseButtonEnabled="False"
+                      IsMaxRestoreButtonEnabled="False"
+                      IsMinButtonEnabled="False"
+                      ShowCloseButton="False">
+    <controls:MetroWindow.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF387FC7" Offset="1" />
+            <GradientStop Color="White" Offset="0" />
+        </LinearGradientBrush>
+    </controls:MetroWindow.Background>
+
+    <Grid>
+        <views:DoctorsView x:Name="DoctorsView"/>
+        <Grid>
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Height" Value="100" />
+                        <Setter Property="Width" Value="100" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <Grid>
+                                            <ContentPresenter Content="{TemplateBinding Content}"
+                                                              HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Margin="0,0,0,0" />
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Black" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True" />
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <ToggleButton x:Name="CloseButton"
+                              RenderTransformOrigin="0.5,0.5"
+                              Margin="0,-50,-50,0"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Top">
+                    <ToggleButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="45" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </ToggleButton.RenderTransform>
+                </ToggleButton>
+                <ToggleButton Height="100"
+                              Width="100"
+                              RenderTransformOrigin="0.5,0.5"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Left"
+                              Margin="-50,-50,0,0">
+                    <ToggleButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="45" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </ToggleButton.RenderTransform>
+                </ToggleButton>
+            </Grid>
+            <Grid HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  Margin="0 50 50 0">
+                <views:ExitView>
+                    <views:ExitView.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CloseButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="UserControl.Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CloseButton, Path=IsChecked}" Value="False">
+                                    <Setter Property="UserControl.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </views:ExitView.Style>
+                </views:ExitView>
+            </Grid>
+        </Grid>
     </Grid>
 </controls:MetroWindow>
-

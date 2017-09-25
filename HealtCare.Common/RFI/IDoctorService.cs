@@ -10,7 +10,11 @@ namespace HealtCare.Common.RFI {
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Returns Doctor Id</returns>
-        LoginResult Login(string username, string password);
+        string Login(string username, string password);
+
+        string GetPatients(int userId);
+        bool SetHoliday(int userId, string date);
+        bool EndHoliday(int userId);
     }
 
 }

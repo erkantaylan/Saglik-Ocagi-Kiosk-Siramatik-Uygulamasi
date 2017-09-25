@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
@@ -45,8 +46,8 @@ namespace HealtCare.DoctorApp.ViewModels {
         }
 
         private void Login(object obj) {
-            LoginResult result = service.Login(Username, Password);
-            result.EventAggregator.SubsribeEvent(this);
+            string result = service.Login(Username, Password);
+            //json parse get id, etc
         }
 
         private bool CanLogin(object obj) {
@@ -65,7 +66,7 @@ namespace HealtCare.DoctorApp.ViewModels {
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        private void OnPropertyChanged(string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

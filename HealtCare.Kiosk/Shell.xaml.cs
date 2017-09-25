@@ -5,6 +5,7 @@ using HealtCare.Common.Aggregator;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
 using HealtCare.Kiosk.Services;
+using HealtCare.Kiosk.ViewModels;
 using Hik.Communication.Scs.Communication.EndPoints.Tcp;
 using Hik.Communication.ScsServices.Service;
 
@@ -31,6 +32,8 @@ namespace HealtCare.Kiosk {
             DoctorService service = new DoctorService(result, Doctor.Doctors);
             server.AddService<IDoctorService, DoctorService>(service);
             server.Start();
+            //items.ItemsSource = Doctor.Doctors;
+            DoctorsView.DataContext = new DoctorsViewModel();
         }
     }
 
