@@ -14,6 +14,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0"
@@ -22,7 +24,13 @@
         <views:NumericTextBox Grid.Row="1"
                               Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
                               controls:TextBoxHelper.Watermark="Kapatma Şifresi" />
-        <Button Grid.Row="2"
+        <views:NumericTextBox Grid.Row="2"
+                              Text="{Binding Path=Rows, UpdateSourceTrigger=PropertyChanged}"
+                              controls:TextBoxHelper.Watermark="Satır Sayısı" />
+        <views:NumericTextBox Grid.Row="3"
+                              Text="{Binding Path=Columns, UpdateSourceTrigger=PropertyChanged}"
+                              controls:TextBoxHelper.Watermark="Sütun Sayısı" />
+        <Button Grid.Row="4"
                 Content="KAYDET"
                 VerticalAlignment="Top"
                 Command="{Binding Path=SaveCommand}" />

@@ -9,14 +9,7 @@ using Newtonsoft.Json;
 namespace HealtCare.Kiosk.Services {
 
     public sealed class DoctorService : ScsService, IDoctorService {
-        private readonly List<Doctor> doctors;
-        private readonly LoginResult result;
-
-        public DoctorService(LoginResult result, List<Doctor> doctors) {
-            this.result = result;
-            this.doctors = doctors;
-        }
-
+        
         /// <summary>
         /// </summary>
         /// <param name="userId"></param>
@@ -71,7 +64,7 @@ namespace HealtCare.Kiosk.Services {
         public string Login(string username, string password) {
             Doctor dr = Doctor.Doctors.FirstOrDefault(o => o.Username == username && o.Password == password);
             if (dr == null) {
-                return "Yanlış Kullanıcı Adı veya Şifre";
+                return "";
             }
             return JsonConvert.SerializeObject(dr);
         }

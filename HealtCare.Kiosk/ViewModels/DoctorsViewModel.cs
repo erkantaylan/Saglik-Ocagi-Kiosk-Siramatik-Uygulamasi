@@ -15,6 +15,10 @@ namespace HealtCare.Kiosk.ViewModels {
             foreach (Doctor doctor in Doctor.Doctors) {
                 Doctors.Add(new DoctorViewModel(doctor));
             }
+            Options options = Options.Load();
+            Columns = options.Columns;
+            Rows = options.Rows;
+            HealtCareName = options.HealtCareCenterName;
         }
 
         public List<DoctorViewModel> Doctors { get; set; }

@@ -1,4 +1,5 @@
-﻿using HealtCare.Common.Controllers;
+﻿using System.ComponentModel;
+using HealtCare.Common.Controllers;
 using Newtonsoft.Json;
 
 namespace HealtCare.Common.Models {
@@ -9,6 +10,14 @@ namespace HealtCare.Common.Models {
 
         [JsonProperty("kapatma_sifresi")]
         public string ExitPassword { get; set; }
+
+        [JsonProperty("satir_sayisi", DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(2)]
+        public int Rows { get; set; }
+
+        [JsonProperty("sutun_sayisi", DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(3)]
+        public int Columns { get; set; }
 
         public void Save() {
             Saver<Options>.Save(this, MagicStrings.OptionsTxtLocation);

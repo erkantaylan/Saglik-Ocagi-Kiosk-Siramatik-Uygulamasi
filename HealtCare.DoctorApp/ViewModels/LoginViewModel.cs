@@ -1,24 +1,22 @@
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
 using HealtCare.DoctorApp.Annotations;
-using MahApps.Metro.Controls.Dialogs;
+using HealtCare.DoctorApp.Views;
+using Newtonsoft.Json;
 
 namespace HealtCare.DoctorApp.ViewModels {
 
-    internal sealed partial class LoginViewModel : ISubscriber<Doctor> {
-        private readonly IDialogCoordinator dialog;
+    internal sealed partial class LoginViewModel {
         private readonly IDoctorService service;
         private string password;
         private string username;
 
-        public LoginViewModel(IDialogCoordinator dialog, IDoctorService service) {
-            this.dialog = dialog;
+        public LoginViewModel(IDoctorService service) {
             this.service = service;
         }
 
@@ -41,12 +39,17 @@ namespace HealtCare.DoctorApp.ViewModels {
 
         public ICommand LoginCommand => new ActionCommand(Login, CanLogin);
 
-        public async void OnEventHandler(Doctor e) {
-            await dialog.ShowMessageAsync(this, "Hello from title", $"[{e.Name}|{e.Username}]");
-        }
 
         private void Login(object obj) {
-            string result = service.Login(Username, Password);
+            string doctorJson = service.Login(Username, Password);
+            if (string.IsNullOrWhiteSpace(doctorJson)) {
+                MessageBox.Show("Kullanıcı adı veya şifre yanlış");
+            } else {
+                Doctor doctor = Doctor.InitializeDoctor(doctorJson);
+                string patientsJson = service.GetPatients(doctor.Id);
+                doctor.Patients = JsonConvert.DeserializeObject<List<Patient>>(patientsJson);
+                Application.Current.MainWindow.Content = new MainView();
+            }
             //json parse get id, etc
         }
 

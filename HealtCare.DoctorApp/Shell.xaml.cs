@@ -15,9 +15,8 @@ namespace HealtCare.DoctorApp {
             InitializeComponent();
             client = ScsServiceClientBuilder.CreateClient<IDoctorService>(new ScsTcpEndPoint("127.0.0.1", MagicStrings.Port));
             client.Connect();
-            string result = client.ServiceProxy.Login("garfield", "1234");
-
-            LoginView.DataContext = new LoginViewModel(DialogCoordinator.Instance, client.ServiceProxy);
+            //string result = client.ServiceProxy.Login("garfield", "1234");
+            LoginView.DataContext = new LoginViewModel(client.ServiceProxy);
         }
     }
 

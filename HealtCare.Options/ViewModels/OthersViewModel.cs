@@ -13,8 +13,12 @@ namespace HealtCare.Options.ViewModels {
             if (o != null) {
                 Name = o.HealtCareCenterName;
                 Password = o.ExitPassword;
+                
             }
         }
+
+        public int Rows { get; set; } = 2;
+        public int Columns { get; set; } = 3;
         public string Name { get; set; }
         public string Password { get; set; }
         public ICommand SaveCommand => new ActionCommand(Save, CanSave);
@@ -32,7 +36,9 @@ namespace HealtCare.Options.ViewModels {
         private void Save(object obj) {
             Common.Models.Options o = new Common.Models.Options {
                 ExitPassword = Password,
-                HealtCareCenterName = Name
+                HealtCareCenterName = Name,
+                Rows = Rows,
+                Columns = Columns
             };
             o.Save();
         }
