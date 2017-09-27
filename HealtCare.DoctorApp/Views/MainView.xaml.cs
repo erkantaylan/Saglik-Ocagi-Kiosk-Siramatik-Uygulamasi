@@ -1,28 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using HealtCare.Common.Models;
+using HealtCare.Common.RFI;
+using HealtCare.DoctorApp.ViewModels;
 
-namespace HealtCare.DoctorApp.Views
-{
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
-    public partial class MainView : UserControl
-    {
-        public MainView()
-        {
+namespace HealtCare.DoctorApp.Views {
+
+    public partial class MainView {
+
+        public MainView() { }
+
+        public MainView(IDoctorService service, Doctor doctor) {
             InitializeComponent();
+            DataContext = new MainViewModel(service, doctor);
         }
     }
+
 }

@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:HealtCare.DoctorApp.ViewModels"
         xmlns:views="clr-namespace:HealtCare.DoctorApp.Views"
         mc:Ignorable="d"
-        Title="Shell" Height="300" Width="300">
+        Title="Shell" MinHeight="380" Height="380" MinWidth="600" MaxWidth="600">
     <Grid>
         <views:LoginView x:Name="LoginView"
                          HorizontalAlignment="Center"

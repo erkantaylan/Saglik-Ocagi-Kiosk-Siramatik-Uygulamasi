@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:HealtCare.DoctorApp.Views"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:models="clr-namespace:HealtCare.Common.Models;assembly=HealtCare.Common"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
@@ -25,20 +25,25 @@
     </UserControl.Resources>
     <DockPanel>
         <GroupBox Header="HASTA LİSTESİ" Width="260">
-            <ItemsControl>
-                <StackPanel Orientation="Horizontal"
-                            Margin="2"
-                            Background="#139eda">
-                    <TextBlock Text="58" Margin="4 2 2 2"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"
-                               Padding="2 0 2 0"
-                               Foreground="#139eda" Background="White"/>
-                    <TextBlock Text="65 yas ustu" Margin="0 2 2 2"/>
-                </StackPanel>
+            <ItemsControl ItemsSource="{Binding Path=Patients}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:Patient}">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2"
+                                    Background="#139eda">
+                            <TextBlock Text="{Binding Path=No}"
+                                       Margin="4 2 2 2"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       Padding="2 0 2 0"
+                                       Foreground="#139eda" Background="White"/>
+                            <TextBlock Text="{Binding Path=Type}" Margin="0 2 2 2"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </GroupBox>
-        <GroupBox Header="" MinWidth="300" HorizontalAlignment="Left">
+        <GroupBox Header="" MinWidth="300" HorizontalAlignment="Left" Padding="1">
             <StackPanel>
                 <Button Content="ÇAĞIR"/>
                 <Button Content="SİL"/>
@@ -47,8 +52,26 @@
                          TextWrapping="Wrap"
                          MinHeight="100"/>
                 <Button Content="MESAJ GÖNDER"/>
-                <Button Content="KİOSK KAPAT" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Content="KİOSK KAPAT" />
+                    <Button Grid.Row="0" Grid.Column="1" Content="KİOSK AÇ" />
+                    <controls:DateTimePicker Grid.Row="1" Grid.Column="0" Margin="2"
+                                             controls:TextBoxHelper.Watermark="Tarih seçiniz."
+                                             FirstDayOfWeek="Monday"
+                                             IsClockVisible="False"
+                                             IsTodayHighlighted="True"/>
+                    <Button Grid.Row="1" Grid.Column="1" Content="TARİHLİ KAPAT" />
+                </Grid>
             </StackPanel>
         </GroupBox>
     </DockPanel>
 </UserControl>
+    

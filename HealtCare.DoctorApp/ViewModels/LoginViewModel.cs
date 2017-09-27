@@ -48,7 +48,8 @@ namespace HealtCare.DoctorApp.ViewModels {
                 Doctor doctor = Doctor.InitializeDoctor(doctorJson);
                 string patientsJson = service.GetPatients(doctor.Id);
                 doctor.Patients = JsonConvert.DeserializeObject<List<Patient>>(patientsJson);
-                Application.Current.MainWindow.Content = new MainView();
+                Application.Current.MainWindow.Content = new MainView(service, doctor);
+                
             }
             //json parse get id, etc
         }

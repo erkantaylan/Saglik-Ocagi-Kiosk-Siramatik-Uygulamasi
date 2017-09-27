@@ -2,7 +2,7 @@
 
     public class Patient {
         public Patient(int doctorId, string type) {
-            No = +LastNo;
+            No = ++LastNo;
             DoctorId = doctorId;
             Type = type;
         }
