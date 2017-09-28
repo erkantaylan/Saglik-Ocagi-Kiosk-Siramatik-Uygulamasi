@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using HealtCare.Common;
-using HealtCare.Common.Aggregator;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
 using HealtCare.Kiosk.Services;
@@ -21,7 +20,7 @@ namespace HealtCare.Kiosk {
         }
 
         private void Shell_Closing(object sender, CancelEventArgs e) {
-            server.Stop();
+            server?.Stop();
         }
 
         private void Shell_ContentRendered(object sender, EventArgs e) {

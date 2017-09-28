@@ -66,8 +66,7 @@
     <Compile Include="Converters\PathToImageSourceConverter.cs" />
     <Compile Include="MagicStrings.cs" />
     <Compile Include="Models\Doctor.cs" />
-    <Compile Include="Models\ISaveble.cs" />
-    <Compile Include="Models\Options.cs" />
+    <Compile Include="Models\KioskOptions.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

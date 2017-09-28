@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace HealtCare.Common.Models {
 
-    public class Options : ISaveble {
+    public class KioskOptions {
         [JsonProperty("saglik_ocagi_adi")]
         public string HealtCareCenterName { get; set; }
 
@@ -19,12 +19,12 @@ namespace HealtCare.Common.Models {
         [DefaultValue(3)]
         public int Columns { get; set; }
 
-        public void Save() {
-            Saver<Options>.Save(this, MagicStrings.OptionsTxtLocation);
+        public static void Save(KioskOptions o) {
+            Saver<KioskOptions>.Save(o, MagicStrings.OptionsTxtLocation);
         }
 
-        public static Options Load() {
-            return Loader<Options>.Load(MagicStrings.OptionsTxtLocation);
+        public static KioskOptions Load() {
+            return Loader<KioskOptions>.Load(MagicStrings.OptionsTxtLocation);
         }
     }
 

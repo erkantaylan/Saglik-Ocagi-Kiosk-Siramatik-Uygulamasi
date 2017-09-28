@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace HealtCare.Common.Models {
 
-    public partial class Doctor : ISaveble {
+    public partial class Doctor {
         private string holidayEndDate;
 
         public Doctor() {
@@ -55,19 +55,11 @@ namespace HealtCare.Common.Models {
 
         [JsonIgnore]
         public List<Patient> Patients { get; set; } = new List<Patient>();
-
-        void ISaveble.Save() {
-            Save();
-        }
-
+        
         public static Doctor InitializeDoctor(string json) {
             return JsonConvert.DeserializeObject<Doctor>(json);
         }
-
-        public string SerialzieDoctor() {
-            return JsonConvert.SerializeObject(this);
-        }
-
+        
         public static void Save() {
             Saver<List<Doctor>>.Save(Doctors, MagicStrings.DoctorsTxtLocation);
         }

@@ -1,19 +1,17 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using HealtCare.Common.Commands;
+using HealtCare.Common.Models;
 using HealtCare.Options.Annotations;
 
 namespace HealtCare.Options.ViewModels {
 
     internal sealed partial class OthersViewModel {
-
         public OthersViewModel() {
-            Common.Models.Options o = Common.Models.Options.Load();
+            KioskOptions o = KioskOptions.Load();
             if (o != null) {
                 Name = o.HealtCareCenterName;
                 Password = o.ExitPassword;
-                
             }
         }
 
@@ -34,13 +32,13 @@ namespace HealtCare.Options.ViewModels {
         }
 
         private void Save(object obj) {
-            Common.Models.Options o = new Common.Models.Options {
+            KioskOptions o = new KioskOptions {
                 ExitPassword = Password,
                 HealtCareCenterName = Name,
                 Rows = Rows,
                 Columns = Columns
             };
-            o.Save();
+            KioskOptions.Save(o);
         }
     }
 
@@ -48,7 +46,7 @@ namespace HealtCare.Options.ViewModels {
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        private void OnPropertyChanged( string propertyName = null) {
+        private void OnPropertyChanged(string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

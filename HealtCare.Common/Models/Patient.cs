@@ -1,6 +1,6 @@
 ﻿namespace HealtCare.Common.Models {
 
-    public class Patient {
+    public class Patient{
         public Patient(int doctorId, string type, int no) {
             No = no;
             DoctorId = doctorId;
@@ -11,6 +11,8 @@
 
         public int DoctorId { get; set; }
         public string Type { get; set; }
+        
+        
     }
 
 }
