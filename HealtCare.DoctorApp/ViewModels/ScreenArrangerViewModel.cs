@@ -20,6 +20,7 @@ namespace HealtCare.DoctorApp.ViewModels {
             this.window = window;
             Screens = Screen.AllScreens.ToList();
             SelectedScreen = Screens.FirstOrDefault(t => !t.Primary);
+
         }
 
         public List<Screen> Screens { get; set; }

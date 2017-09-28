@@ -15,8 +15,8 @@
                       WindowTransitionsEnabled="True"
                       BorderThickness="2"
                       WindowStartupLocation="CenterScreen"
-                      MinHeight="380"
-                      Height="380"
+                      MinHeight="470"
+                      Height="660"
                       MinWidth="600"
                       MaxWidth="600">
     <Grid>

@@ -86,7 +86,8 @@ namespace HealtCare.DoctorApp.ViewModels {
         }
 
         private void DisableKioskWithDate(object obj) {
-            MessageBox.Show(SelectedDate.ToString("D", new CultureInfo("Tr-tr")));
+            string date = SelectedDate.ToString("D", new CultureInfo("Tr-tr"));
+            service.SetHoliday(doctor.Id, date);
         }
 
         private void EnableKiosk(object obj) {

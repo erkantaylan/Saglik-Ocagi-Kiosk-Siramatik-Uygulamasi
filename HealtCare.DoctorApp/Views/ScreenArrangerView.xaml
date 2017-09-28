@@ -25,7 +25,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </GroupBox>
-        <Button Content="SEÇİLİ MONİTÖRDE GÖSTER" DockPanel.Dock="Top"/>
-        <Button Content="GİZLE"/>
+        <Button Content="SEÇİLİ MONİTÖRDE GÖSTER"
+                DockPanel.Dock="Top"
+                Command="{Binding Path=ShowCommand}"/>
+        <Button Content="GİZLE"
+                Command="{Binding Path=HideCommand}"/>
     </DockPanel>
 </UserControl>

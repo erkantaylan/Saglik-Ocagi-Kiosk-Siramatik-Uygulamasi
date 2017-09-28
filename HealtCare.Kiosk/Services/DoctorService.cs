@@ -67,7 +67,6 @@ namespace HealtCare.Kiosk.Services {
                         Patient patient = doctor.Patients[i];
                         if (Equals(patient.No, patientNo)) {
                             doctor.Patients.Remove(patient);
-                            MessageBox.Show($"Hasta silindi:{doctor.Id}|{doctor.Name}|{patient.No}|{patient.Type}");
                             PatientController.Save();
                             break;
                         }

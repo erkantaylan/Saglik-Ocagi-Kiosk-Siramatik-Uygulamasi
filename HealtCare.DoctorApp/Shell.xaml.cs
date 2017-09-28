@@ -2,6 +2,7 @@
 using HealtCare.Common;
 using HealtCare.Common.RFI;
 using HealtCare.DoctorApp.ViewModels;
+using HealtCare.DoctorApp.Windows;
 using Hik.Communication.Scs.Communication.EndPoints.Tcp;
 using Hik.Communication.ScsServices.Client;
 

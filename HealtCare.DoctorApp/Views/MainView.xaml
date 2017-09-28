@@ -7,9 +7,6 @@
              xmlns:models="clr-namespace:HealtCare.Common.Models;assembly=HealtCare.Common"
              xmlns:views="clr-namespace:HealtCare.DoctorApp.Views"
              mc:Ignorable="d">
-    <UserControl.Resources>
-
-    </UserControl.Resources>
     <DockPanel>
         <GroupBox Header="HASTA LİSTESİ" Width="260">
             <ListBox ItemsSource="{Binding Path=Patients}"

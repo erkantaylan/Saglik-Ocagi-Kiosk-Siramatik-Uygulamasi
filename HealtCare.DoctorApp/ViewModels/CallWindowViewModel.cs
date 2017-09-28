@@ -11,6 +11,7 @@ namespace HealtCare.DoctorApp.ViewModels {
         private string patientNo;
 
         public CallWindowViewModel(IEventAggregator ea, string healtCenterName) {
+            HealtCenterName = healtCenterName;
             ea.SubsribeEvent(this);
         }
 
@@ -29,7 +30,9 @@ namespace HealtCare.DoctorApp.ViewModels {
                 OnPropertyChanged(nameof(PatientNo));
             }
         }
-        
+
+        public string HealtCenterName { get; }
+
         public void OnEventHandler(Patient e) {
             PatientNo = e.No.ToString();
         }
