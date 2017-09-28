@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using HealtCare.Common.Controllers;
 using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
 
@@ -8,14 +9,12 @@ namespace HealtCare.Kiosk.ViewModels {
 
     internal sealed partial class DoctorsViewModel {
         public DoctorsViewModel() {
-            HealtCareName = "ERKAN TAYLAN ABDULL REZZAK BILMEM NE "
-                            + "SAGLIK OCAGI AS LMT STI FUCK YOU BITCH"
-                            + "";
             Doctors = new List<DoctorViewModel>(Doctor.Doctors.Count);
             foreach (Doctor doctor in Doctor.Doctors) {
                 Doctors.Add(new DoctorViewModel(doctor));
             }
             KioskOptions kioskOptions = KioskOptions.Load();
+            PatientController.Load();
             Columns = kioskOptions.Columns;
             Rows = kioskOptions.Rows;
             HealtCareName = kioskOptions.HealtCareCenterName;

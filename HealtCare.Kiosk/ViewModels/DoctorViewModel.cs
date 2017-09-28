@@ -4,8 +4,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using HealtCare.Common;
-using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
+using HealtCare.Common.Controllers;
 using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
 
@@ -34,7 +34,7 @@ namespace HealtCare.Kiosk.ViewModels {
         public string Name { get; set; }
         public string ImagePath { get; set; }
 
-        public ICommand TakeLineCommand => new ActionCommand(TakeOrder, o => true);
+        public ICommand TakeLineCommand => new ActionCommand(TakeLine, o => true);
 
         private void Doctor_PropertyChanged(object sender, PropertyChangedEventArgs e) {
             SetVacation();
@@ -71,12 +71,13 @@ namespace HealtCare.Kiosk.ViewModels {
             return true;
         }
 
-        private void TakeOrder(object obj) {
+        private void TakeLine(object obj) {
             doctor.Patients.Add(
                 new Patient(
                     doctor.Id,
                     obj.ToString(),
                     GetPatientNumber()));
+            PatientController.Save();
             MessageBox.Show($"{Name}|{obj}");
         }
 

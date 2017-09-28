@@ -61,6 +61,7 @@
     <Compile Include="Aggregator\ISubscriber.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Controllers\Loader.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\Saver.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\PathToImageSourceConverter.cs" />

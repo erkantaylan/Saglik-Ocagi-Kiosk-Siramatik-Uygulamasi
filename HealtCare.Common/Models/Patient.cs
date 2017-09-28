@@ -12,7 +12,6 @@
         public int DoctorId { get; set; }
         public string Type { get; set; }
         
-        
     }
 
 }
