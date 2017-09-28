@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
@@ -66,11 +65,6 @@ namespace HealtCare.Kiosk.Services {
             return dr == null ? "" : JsonConvert.SerializeObject(dr);
         }
         
-
-        public bool DisableKiosk(int userId) {
-            throw new System.NotImplementedException();
-        }
-
         private static Doctor GetDoctor(int userId) {
             return Doctor.Doctors.FirstOrDefault(o => o.Id == userId);
         }

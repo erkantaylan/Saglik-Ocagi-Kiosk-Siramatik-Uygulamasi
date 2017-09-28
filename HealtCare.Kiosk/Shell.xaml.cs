@@ -27,8 +27,6 @@ namespace HealtCare.Kiosk {
         private void Shell_ContentRendered(object sender, EventArgs e) {
             Doctor.Load();
             server = ScsServiceBuilder.CreateService(new ScsTcpEndPoint(MagicStrings.Port));
-            LoginResult result = new LoginResult();
-            result.EventAggregator = new EventAggregator();
             DoctorService service = new DoctorService();
             server.AddService<IDoctorService, DoctorService>(service);
             server.Start();

@@ -67,7 +67,6 @@
     <Compile Include="MagicStrings.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\ISaveble.cs" />
-    <Compile Include="Models\LoginResult.cs" />
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Properties\Annotations.cs" />
