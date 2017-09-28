@@ -49,12 +49,26 @@ namespace HealtCare.Kiosk.ViewModels {
                         doctor.HolidayEndDate,
                         MagicStrings.DateFormat,
                         CultureInfo.CurrentCulture);
-                    NotAtVacation = DateTime.Now > dt;
+                    NotAtVacation = !CalculateVacation(dt);
                 }
                 catch {
                     NotAtVacation = true;
                 }
             }
+        }
+
+        private static bool CalculateVacation(DateTime dt) {
+            DateTime today = DateTime.Now;
+            if (today.Year > dt.Year) {
+                return false;
+            }
+            if (today.Month > dt.Month) {
+                return false;
+            }
+            if (today.Day > dt.Day) {
+                return false;
+            }
+            return true;
         }
 
         private void TakeOrder(object obj) {

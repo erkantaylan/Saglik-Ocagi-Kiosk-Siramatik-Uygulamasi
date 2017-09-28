@@ -62,10 +62,10 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0"
+                    <Button Grid.Row="0" Grid.Column="1"
                             Content="KİOSK KAPAT"
                             Command="{Binding Path=DisableKioskCommand}"/>
-                    <Button Grid.Row="0" Grid.Column="1"
+                    <Button Grid.Row="0" Grid.Column="0"
                             Content="KİOSK AÇ"
                             Command="{Binding Path=EnableKioskCommand}"/>
                     <DatePicker x:Name="HolidayEndDate"
