@@ -2,11 +2,13 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
 using HealtCare.DoctorApp.Annotations;
 using HealtCare.DoctorApp.Views;
+using HealtCare.DoctorApp.Windows;
 using Newtonsoft.Json;
 
 namespace HealtCare.DoctorApp.ViewModels {
@@ -48,8 +50,10 @@ namespace HealtCare.DoctorApp.ViewModels {
                 Doctor doctor = Doctor.InitializeDoctor(doctorJson);
                 string patientsJson = service.GetPatients(doctor.Id);
                 doctor.Patients = JsonConvert.DeserializeObject<List<Patient>>(patientsJson);
-                Application.Current.MainWindow.Content = new MainView(service, doctor);
-                
+                IEventAggregator ea = new EventAggregator();
+                string healtCenterName = service.GetHealtCenterName();
+                CallWindow window = new CallWindow(ea, healtCenterName);
+                Application.Current.MainWindow.Content = new MainView(service, doctor, ea, window);
             }
             //json parse get id, etc
         }

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="HealtCare.DoctorApp.Views.ScreenArrangerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:HealtCare.DoctorApp.ViewModels"
+             xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             mc:Ignorable="d">
+    <DockPanel>
+        <GroupBox Header="MONİTÖR LİSTESİ" DockPanel.Dock="Top" Padding="2" Margin="2">
+            <ListBox ItemsSource="{Binding Path=Screens}"
+                     SelectedItem="{Binding Path=SelectedScreen}"
+                     IsSynchronizedWithCurrentItem="True"
+                     SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type forms:Screen}">
+                        <ComboBoxItem Background="Transparent">
+                            <DockPanel Background="Transparent">
+                                <TextBlock DockPanel.Dock="Left" Text="{Binding Path=DeviceName}" MinWidth="120" />
+                                <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Bounds}" MinWidth="120" />
+                                <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Primary}" />
+                            </DockPanel>
+                        </ComboBoxItem>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <Button Content="SEÇİLİ MONİTÖRDE GÖSTER" DockPanel.Dock="Top"/>
+        <Button Content="GİZLE"/>
+    </DockPanel>
+</UserControl>

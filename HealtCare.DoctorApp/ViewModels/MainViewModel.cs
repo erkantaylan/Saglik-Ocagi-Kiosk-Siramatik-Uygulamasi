@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using HealtCare.Common;
+using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
@@ -19,15 +20,18 @@ namespace HealtCare.DoctorApp.ViewModels {
 
     internal sealed partial class MainViewModel {
         private readonly Doctor doctor;
+        private readonly IEventAggregator ea;
+        private readonly IDoctorService service;
         private ObservableCollection<Patient> patients;
         private DateTime selectedDate = DateTime.Now;
-        private readonly IDoctorService service;
+        private Patient selectedPatient;
 
-        public MainViewModel(IDoctorService service, Doctor doctor) {
+        public MainViewModel(IDoctorService service, Doctor doctor, IEventAggregator ea) {
             Patients = new ObservableCollection<Patient>();
             this.service = service;
             this.doctor = doctor;
-            
+            this.ea = ea;
+
             DispatcherTimer timer = new DispatcherTimer {
                 Interval = TimeSpan.FromSeconds(5)
             };
@@ -37,7 +41,12 @@ namespace HealtCare.DoctorApp.ViewModels {
             timer.Start();
         }
 
-        public ICommand CallCommand => new ActionCommand(Call, o => true);
+        public ICommand CallCommand => new ActionCommand(Call, CanCall);
+
+        private bool CanCall(object o) {
+            return SelectedPatient != null;
+        }
+
         public ICommand RemoveCommand => new ActionCommand(Remove, o => true);
         public ICommand SendTextCommand => new ActionCommand(SendText, o => true);
         public ICommand DisableKioskCommand => new ActionCommand(DisableKiosk, o => true);
@@ -59,6 +68,14 @@ namespace HealtCare.DoctorApp.ViewModels {
             set {
                 patients = value;
                 OnPropertyChanged(nameof(Patients));
+            }
+        }
+
+        public Patient SelectedPatient {
+            get => selectedPatient;
+            set {
+                selectedPatient = value;
+                OnPropertyChanged(nameof(SelectedPatient));
             }
         }
 
@@ -102,15 +119,32 @@ namespace HealtCare.DoctorApp.ViewModels {
         }
 
         private void SendText(object obj) {
-            throw new NotImplementedException();
+            ea.PublishEvent(Message);
         }
 
         private void Remove(object obj) {
-            throw new NotImplementedException();
+            try {
+                RemovePatient();
+            }
+            catch (Exception exception) {
+                MessageBox.Show($"{exception}");
+            }
         }
 
         private void Call(object obj) {
-            throw new NotImplementedException();
+            try {
+                ea.PublishEvent(SelectedPatient);
+                RemovePatient();
+            }
+            catch (Exception exception) {
+                MessageBox.Show($"{exception}");
+            }
+        }
+
+        private void RemovePatient() {
+            service.RemovePatient(doctor.Id, SelectedPatient.No);
+            Patients.Remove(SelectedPatient);
+            SelectedPatient = null;
         }
     }
 

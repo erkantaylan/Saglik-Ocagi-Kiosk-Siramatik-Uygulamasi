@@ -14,6 +14,8 @@ namespace HealtCare.Common.RFI {
         string GetPatients(int userId);
         bool SetHoliday(int userId, string date);
         bool EndHoliday(int userId);
+        void RemovePatient(int userId, int patientNo);
+        string GetHealtCenterName();
     }
 
 }

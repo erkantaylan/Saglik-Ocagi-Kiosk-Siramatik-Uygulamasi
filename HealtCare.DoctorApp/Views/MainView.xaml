@@ -5,26 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:models="clr-namespace:HealtCare.Common.Models;assembly=HealtCare.Common"
+             xmlns:views="clr-namespace:HealtCare.DoctorApp.Views"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="Padding" Value="4" />
-            <Setter Property="FontSize" Value="24" />
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}">
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="MaxWidth" Value="300" />
-            <Setter Property="MinWidth" Value="100" />
-            <Setter Property="BorderThickness" Value="0" />
 
-        </Style>
     </UserControl.Resources>
     <DockPanel>
         <GroupBox Header="HASTA LİSTESİ" Width="260">
-            <ListBox ItemsSource="{Binding Path=Patients}">
+            <ListBox ItemsSource="{Binding Path=Patients}"
+                     SelectedItem="{Binding Path=SelectedPatient}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Patient}">
                         <StackPanel Orientation="Horizontal"
@@ -43,46 +32,59 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </GroupBox>
-        <GroupBox Header="" MinWidth="300" HorizontalAlignment="Left" Padding="1">
-            <StackPanel>
-                <Button Content="ÇAĞIR" Command="{Binding Path=CallCommand}" />
-                <Button Content="SİL" Command="{Binding Path=RemoveCommand}" />
-                <TextBox Margin="2"
-                         Text="{Binding Path=Message}"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         MinHeight="100" />
-                <Button Content="MESAJ GÖNDER"
-                        Command="{Binding Path=SendTextCommand}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Grid.Column="1"
-                            Content="KİOSK KAPAT"
-                            Command="{Binding Path=DisableKioskCommand}" />
-                    <Button Grid.Row="0" Grid.Column="0"
-                            Content="KİOSK AÇ"
-                            Command="{Binding Path=EnableKioskCommand}" />
-                    <DatePicker x:Name="HolidayEndDate"
-                                Grid.Row="1" Grid.Column="0"
-                                Margin="2"
-                                controls:TextBoxHelper.Watermark="Tarih seçiniz."
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                SelectedDate="{Binding Path=SelectedDate}"
-                                FirstDayOfWeek="Monday"
-                                IsTodayHighlighted="True" />
-                    <Button Grid.Row="1" Grid.Column="1"
-                            Content="TARİHLİ KAPAT"
-                            Command="{Binding Path=DisableKioskWithDateCommand}" />
-                </Grid>
-            </StackPanel>
-        </GroupBox>
+        <DockPanel>
+            <GroupBox Header="İŞLEMLER"
+                      MinWidth="300"
+
+                      HorizontalAlignment="Stretch"
+                      Padding="1"
+                      DockPanel.Dock="Top">
+                <StackPanel>
+                    <Button Content="ÇAĞIR" Command="{Binding Path=CallCommand}" />
+                    <Button Content="SİL" Command="{Binding Path=RemoveCommand}" />
+                    <TextBox Margin="2"
+                             Text="{Binding Path=Message}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="100" />
+                    <Button Content="MESAJ GÖNDER"
+                            Command="{Binding Path=SendTextCommand}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="1"
+                                Content="KİOSK KAPAT"
+                                Command="{Binding Path=DisableKioskCommand}" />
+                        <Button Grid.Row="0" Grid.Column="0"
+                                Content="KİOSK AÇ"
+                                Command="{Binding Path=EnableKioskCommand}" />
+                        <DatePicker x:Name="HolidayEndDate"
+                                    Grid.Row="1" Grid.Column="0"
+                                    Margin="2"
+                                    controls:TextBoxHelper.Watermark="Tarih seçiniz."
+                                    VerticalContentAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    SelectedDate="{Binding Path=SelectedDate}"
+                                    FirstDayOfWeek="Monday"
+                                    IsTodayHighlighted="True" />
+                        <Button Grid.Row="1" Grid.Column="1"
+                                Content="TARİHLİ KAPAT"
+                                Command="{Binding Path=DisableKioskWithDateCommand}" />
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <Expander IsExpanded="True"
+                      Header="MONİTÖR AYARLARI"
+                      Padding="0"
+                      Margin="5">
+                <views:ScreenArrangerView x:Name="screenArranger" VerticalAlignment="Top" />
+            </Expander>
+        </DockPanel>
     </DockPanel>
 </UserControl>
