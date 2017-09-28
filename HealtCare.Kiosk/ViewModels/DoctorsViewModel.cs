@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using HealtCare.Common.Commands;
 using HealtCare.Common.Controllers;
 using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
@@ -24,6 +27,20 @@ namespace HealtCare.Kiosk.ViewModels {
         public int Columns { get; set; } = 3;
         public int Rows { get; set; } = 2;
         public string HealtCareName { get; set; }
+        public ICommand VisitorPatientCommand => new ActionCommand(VisitorPatient, o => true);
+
+        private void VisitorPatient(object obj) {
+            List<DoctorViewModel> availableDoctors = Doctors.Where(o => o.NotAtVacation).ToList();
+            if (availableDoctors.Any()) {
+                DoctorViewModel min = availableDoctors[0];
+                foreach (DoctorViewModel dr in availableDoctors) {
+                    if (min.DoctorInfo.Patients.Count > dr.DoctorInfo.Patients.Count) {
+                        min = dr;
+                    }
+                }
+                min.TakeLineCommand.Execute("Visitor");
+            }
+        }
     }
 
     internal sealed partial class DoctorsViewModel : INotifyPropertyChanged {

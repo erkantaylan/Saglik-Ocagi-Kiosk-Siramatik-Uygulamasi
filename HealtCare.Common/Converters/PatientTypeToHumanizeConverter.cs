@@ -1,30 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
+using HealtCare.Common.Factories;
 
 namespace HealtCare.Common.Converters {
 
     public class PatientTypeToHumanizeConverter : IValueConverter {
-        private readonly Dictionary<string, string> patientTypes = new Dictionary<string, string> {
-            {
-                "Pregnant", "HAMİLE"
-            }, {
-                "Child", "5 YAŞ ALTI"
-            }, {
-                "Disabled", "ENGELLİ"
-            }, {
-                "Old", "65 YAŞ ÜSTÜ"
-            }, {
-                "Normal", "Normal"
-            }, {
-                "Visitor", "ZİYARETÇİ"
-            }
-        };
+        private readonly PatientTypeFactory patientTypeFactory = new PatientTypeFactory();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            string o = value.ToString();
-            return patientTypes[o];
+            if (value != null) {
+                string o = value.ToString();
+                return patientTypeFactory.PatientTypes[o];
+            }
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

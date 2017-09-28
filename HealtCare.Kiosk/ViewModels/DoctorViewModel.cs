@@ -12,11 +12,10 @@ using HealtCare.Kiosk.Annotations;
 namespace HealtCare.Kiosk.ViewModels {
 
     internal sealed partial class DoctorViewModel {
-        private readonly Doctor doctor;
         private bool notAtVacation;
 
         public DoctorViewModel(Doctor doctor) {
-            this.doctor = doctor;
+            this.DoctorInfo = doctor;
             Name = doctor.Title + " " + doctor.Name;
             ImagePath = doctor.ImagePath;
             doctor.PropertyChanged += Doctor_PropertyChanged;
@@ -36,17 +35,19 @@ namespace HealtCare.Kiosk.ViewModels {
 
         public ICommand TakeLineCommand => new ActionCommand(TakeLine, o => true);
 
+        public Doctor DoctorInfo { get; }
+
         private void Doctor_PropertyChanged(object sender, PropertyChangedEventArgs e) {
             SetVacation();
         }
 
         private void SetVacation() {
-            if (string.IsNullOrWhiteSpace(doctor.HolidayEndDate)) {
+            if (string.IsNullOrWhiteSpace(DoctorInfo.HolidayEndDate)) {
                 NotAtVacation = true;
             } else {
                 try {
                     DateTime dt = DateTime.ParseExact(
-                        doctor.HolidayEndDate,
+                        DoctorInfo.HolidayEndDate,
                         MagicStrings.DateFormat,
                         CultureInfo.CurrentCulture);
                     NotAtVacation = !CalculateVacation(dt);
@@ -72,17 +73,16 @@ namespace HealtCare.Kiosk.ViewModels {
         }
 
         private void TakeLine(object obj) {
-            doctor.Patients.Add(
+            DoctorInfo.Patients.Add(
                 new Patient(
-                    doctor.Id,
+                    DoctorInfo.Id,
                     obj.ToString(),
                     GetPatientNumber()));
             PatientController.Save();
-            MessageBox.Show($"{Name}|{obj}");
         }
 
         private int GetPatientNumber() {
-            return doctor.LastPatientNumber++;
+            return DoctorInfo.LastPatientNumber++;
         }
     }
 
