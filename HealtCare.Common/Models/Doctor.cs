@@ -17,19 +17,33 @@ namespace HealtCare.Common.Models {
             } else {
                 Id = Doctors.Max(o => o.Id) + 1;
             }
-
             Doctors.Add(this);
         }
 
         [JsonIgnore]
         public static List<Doctor> Doctors { get; private set; } = new List<Doctor>();
 
+        [JsonProperty("id")]
         public int Id { get; set; }
+
+        [JsonProperty("username")]
         public string Username { get; set; }
+
+        [JsonProperty("password")]
         public string Password { get; set; }
+
+        [JsonProperty("unvan")]
         public string Title { get; set; }
+
+        [JsonProperty("isim")]
         public string Name { get; set; }
+
+        [JsonProperty("resim_yolu")]
         public string ImagePath { get; set; }
+
+        [DefaultValue(1)]
+        [JsonProperty("son_hasta_numarasi", DefaultValueHandling = DefaultValueHandling.Populate)]
+        public int LastPatientNumber { get; set; } = 1;
 
         public string HolidayEndDate {
             get => holidayEndDate;

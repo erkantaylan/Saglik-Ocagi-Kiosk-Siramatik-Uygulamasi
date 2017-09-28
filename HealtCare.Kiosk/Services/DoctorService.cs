@@ -63,10 +63,12 @@ namespace HealtCare.Kiosk.Services {
         /// <returns></returns>
         public string Login(string username, string password) {
             Doctor dr = Doctor.Doctors.FirstOrDefault(o => o.Username == username && o.Password == password);
-            if (dr == null) {
-                return "";
-            }
-            return JsonConvert.SerializeObject(dr);
+            return dr == null ? "" : JsonConvert.SerializeObject(dr);
+        }
+        
+
+        public bool DisableKiosk(int userId) {
+            throw new System.NotImplementedException();
         }
 
         private static Doctor GetDoctor(int userId) {

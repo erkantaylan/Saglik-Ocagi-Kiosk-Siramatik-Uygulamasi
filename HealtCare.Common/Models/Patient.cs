@@ -1,13 +1,11 @@
 ﻿namespace HealtCare.Common.Models {
 
     public class Patient {
-        public Patient(int doctorId, string type) {
-            No = ++LastNo;
+        public Patient(int doctorId, string type, int no) {
+            No = no;
             DoctorId = doctorId;
             Type = type;
         }
-
-        public static int LastNo { get; set; }
 
         public int No { get; set; }
 

@@ -18,12 +18,12 @@
                       IsMinButtonEnabled="False"
                       ShowCloseButton="False">
     <controls:MetroWindow.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF387FC7" Offset="1" />
-            <GradientStop Color="White" Offset="0" />
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Resources/desen.jpg"
+                    TileMode="FlipXY"
+                    ViewportUnits="Absolute"
+                    Stretch="Uniform"
+                    Viewport="0 0 50 50"/>
     </controls:MetroWindow.Background>
-
     <Grid>
         <views:DoctorsView x:Name="DoctorsView"/>
         <Grid>

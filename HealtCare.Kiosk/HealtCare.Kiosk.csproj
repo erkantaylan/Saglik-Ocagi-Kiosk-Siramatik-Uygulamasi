@@ -149,5 +149,8 @@
   <ItemGroup>
     <Resource Include="Changes.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\desen.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

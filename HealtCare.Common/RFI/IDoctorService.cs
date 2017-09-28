@@ -1,5 +1,4 @@
-﻿using HealtCare.Common.Models;
-using Hik.Communication.ScsServices.Service;
+﻿using Hik.Communication.ScsServices.Service;
 
 namespace HealtCare.Common.RFI {
 

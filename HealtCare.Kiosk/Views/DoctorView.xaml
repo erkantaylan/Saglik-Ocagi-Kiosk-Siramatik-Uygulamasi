@@ -4,8 +4,7 @@
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" MaxWidth="600"
-             >
+             mc:Ignorable="d" MaxWidth="600">
     <UserControl.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}">
             <Setter Property="Width" Value="200" />
@@ -16,11 +15,9 @@
         </Style>
     </UserControl.Resources>
     <GroupBox Header="{Binding Path=Name}"
-              Padding="1"
-              
+              Padding="2"
               VerticalAlignment="Top"
-              controls:ControlsHelper.HeaderFontSize="20"
-              controls:ControlsHelper.HeaderFontWeight="Black"
+              controls:ControlsHelper.HeaderFontSize="24"
               IsEnabled="{Binding Path=NotAtVacation}">
         <!--<GroupBox.HeaderTemplate>
             <DataTemplate>
@@ -29,7 +26,7 @@
                            Background="#25A0DA" FontSize="18" Padding="5,0,0,0" Margin="1" Foreground="White"/>
             </DataTemplate>
         </GroupBox.HeaderTemplate>-->
-        <DockPanel Background="#4f4f4f">
+        <DockPanel Background="#f4f4f4">
             <DockPanel Dock="Top">
                 <DockPanel DockPanel.Dock="Left">
                     <Image Source="{Binding Path=ImagePath}"

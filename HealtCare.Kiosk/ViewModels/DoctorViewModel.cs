@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
+using HealtCare.Common;
+using HealtCare.Common.Aggregator;
 using HealtCare.Common.Commands;
 using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
@@ -43,7 +45,10 @@ namespace HealtCare.Kiosk.ViewModels {
                 NotAtVacation = true;
             } else {
                 try {
-                    DateTime dt = DateTime.ParseExact(doctor.HolidayEndDate, "yyyy-MM-dd", CultureInfo.CurrentCulture);
+                    DateTime dt = DateTime.ParseExact(
+                        doctor.HolidayEndDate,
+                        MagicStrings.DateFormat,
+                        CultureInfo.CurrentCulture);
                     NotAtVacation = DateTime.Now > dt;
                 }
                 catch {
@@ -53,8 +58,16 @@ namespace HealtCare.Kiosk.ViewModels {
         }
 
         private void TakeOrder(object obj) {
-            doctor.Patients.Add(new Patient(doctor.Id, obj.ToString()));
+            doctor.Patients.Add(
+                new Patient(
+                    doctor.Id,
+                    obj.ToString(),
+                    GetPatientNumber()));
             MessageBox.Show($"{Name}|{obj}");
+        }
+
+        private int GetPatientNumber() {
+            return doctor.LastPatientNumber++;
         }
     }
 
