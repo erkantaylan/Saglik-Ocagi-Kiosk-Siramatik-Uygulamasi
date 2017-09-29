@@ -16,7 +16,10 @@
                     Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
             <converters:PatientTypeToHumanizeConverter x:Key="PatientTypeToHumanizeConverter" />
+            <converters:StringLenghtToVisibilityConverter x:Key="StringLenghtToVisibilityConverter" />
+
             <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}">
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />
@@ -24,6 +27,7 @@
                 <Setter Property="MinWidth" Value="100" />
                 <Setter Property="BorderThickness" Value="0" />
             </Style>
+
             <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="Padding" Value="4" />

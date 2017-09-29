@@ -82,6 +82,7 @@
                            Foreground="White"
                            FontSize="100"
                            Text="{Binding Path=Message}"
+                           Visibility="{Binding ElementName=TxtMessage, Path=Text, Converter={StaticResource StringLenghtToVisibilityConverter}}"
                            TextWrapping="Wrap" />
             </Grid>
         </Grid>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
@@ -45,10 +44,6 @@ namespace HealtCare.DoctorApp.ViewModels {
 
         public ICommand CallCommand => new ActionCommand(Call, CanCall);
 
-        private bool CanCall(object o) {
-            return SelectedPatient != null;
-        }
-
         public ICommand RemoveCommand => new ActionCommand(Remove, o => true);
         public ICommand SendTextCommand => new ActionCommand(SendText, o => true);
         public ICommand DisableKioskCommand => new ActionCommand(DisableKiosk, o => true);
@@ -82,6 +77,10 @@ namespace HealtCare.DoctorApp.ViewModels {
         }
 
         public string Message { get; set; }
+
+        private bool CanCall(object o) {
+            return SelectedPatient != null;
+        }
 
         private bool CanDisableKioskWithDate(object obj) {
             return true;
