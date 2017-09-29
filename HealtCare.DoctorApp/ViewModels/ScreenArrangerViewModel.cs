@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,13 +13,12 @@ namespace HealtCare.DoctorApp.ViewModels {
 
     internal sealed partial class ScreenArrangerViewModel {
         private Screen selectedScreen;
-        private CallWindow window;
+        private readonly CallWindow window;
 
         public ScreenArrangerViewModel(CallWindow window) {
             this.window = window;
             Screens = Screen.AllScreens.ToList();
             SelectedScreen = Screens.FirstOrDefault(t => !t.Primary);
-
         }
 
         public List<Screen> Screens { get; set; }

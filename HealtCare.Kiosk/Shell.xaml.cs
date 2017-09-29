@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 using HealtCare.Common;
 using HealtCare.Common.Models;
 using HealtCare.Common.RFI;
@@ -30,6 +32,10 @@ namespace HealtCare.Kiosk {
             server.AddService<IDoctorService, DoctorService>(service);
             server.Start();
             DoctorsView.DataContext = new DoctorsViewModel();
+        }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            WindowState = WindowState.Maximized;
         }
     }
 

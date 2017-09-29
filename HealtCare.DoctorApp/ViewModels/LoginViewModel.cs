@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -22,9 +21,11 @@ namespace HealtCare.DoctorApp.ViewModels {
 
     internal sealed partial class LoginViewModel {
         private const string IpTxtPath = "KioskIp";
+
+        private bool canLogin = true;
+        private string kioskIp;
         private string password;
         private string username;
-        private string kioskIp;
 
         public LoginViewModel() {
             if (File.Exists(IpTxtPath)) {
@@ -99,7 +100,6 @@ namespace HealtCare.DoctorApp.ViewModels {
                 }).Start();
         }
 
-        private bool canLogin = true;
         private bool CanLogin(object obj) {
             if (string.IsNullOrWhiteSpace(Username)) {
                 return false;

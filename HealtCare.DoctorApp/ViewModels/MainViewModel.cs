@@ -121,15 +121,7 @@ namespace HealtCare.DoctorApp.ViewModels {
         private void SetPatients(List<Patient> list) {
             Patients = new ObservableCollection<Patient>(list);
         }
-
-        private bool AreListsEqual(List<Patient> lst) {
-            for (int i = 0; i < Patients.Count; i++) {
-                if (Patients[i].No != lst[i].No) {
-                    return false;
-                }
-            }
-            return true;
-        }
+        
 
         private void DisableKiosk(object obj) {
             service.SetHoliday(doctor.Id, DateTime.Now.ToString(MagicStrings.DateFormat));

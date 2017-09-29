@@ -6,10 +6,8 @@
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:views="clr-namespace:HealtCare.Kiosk.Views"
                       mc:Ignorable="d"
-                      WindowStartupLocation="CenterOwner"
-                      Width="1366"
-                      Height="768"
                       WindowStyle="None"
+                      WindowState="Maximized"
                       ResizeMode="NoResize"
                       controls:ShowTitleBar="False"
                       IgnoreTaskbarOnMaximize="True"
@@ -22,10 +20,10 @@
                     TileMode="FlipXY"
                     ViewportUnits="Absolute"
                     Stretch="Uniform"
-                    Viewport="0 0 50 50"/>
+                    Viewport="0 0 50 50" />
     </controls:MetroWindow.Background>
     <Grid>
-        <views:DoctorsView x:Name="DoctorsView"/>
+        <views:DoctorsView x:Name="DoctorsView" />
         <Grid>
             <Grid>
                 <Grid.Resources>
@@ -72,6 +70,7 @@
                 </ToggleButton>
                 <ToggleButton Height="100"
                               Width="100"
+                              MouseDoubleClick="Control_OnMouseDoubleClick"
                               RenderTransformOrigin="0.5,0.5"
                               VerticalAlignment="Top"
                               HorizontalAlignment="Left"

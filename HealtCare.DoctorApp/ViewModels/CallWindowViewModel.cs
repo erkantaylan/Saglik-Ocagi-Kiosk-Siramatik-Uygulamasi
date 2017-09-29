@@ -37,8 +37,8 @@ namespace HealtCare.DoctorApp.ViewModels {
             PatientNo = e.No.ToString();
         }
 
-        public void OnEventHandler(string message) {
-            Message = message;
+        public void OnEventHandler(string msg) {
+            Message = msg;
         }
     }
 

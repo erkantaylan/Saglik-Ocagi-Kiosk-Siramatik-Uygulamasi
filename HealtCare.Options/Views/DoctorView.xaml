@@ -10,13 +10,13 @@
                Source="{Binding Path=ImagePath, Converter={StaticResource PathToImageSourceConverter}}" />
         <TextBlock Text="{Binding Path=Title}"
                    VerticalAlignment="Center"
-                   TextAlignment="Center" 
+                   TextAlignment="Center"
                    Margin="4 4 8 4"
-                   FontSize="16"/>
+                   FontSize="16" />
         <TextBlock Text="{Binding Path=Name}"
                    VerticalAlignment="Center"
                    TextAlignment="Center"
-                   FontSize="16"/>
+                   FontSize="16" />
 
     </StackPanel>
 </UserControl>

@@ -17,10 +17,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+        <TextBox Grid.Row="0" Grid.Column="0" 
                  Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Doktor Ünvan" />
-        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1"
+        <TextBox Grid.Row="0" Grid.Column="1" 
                  Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
                  controls:TextBoxHelper.Watermark="Doktor Adı" />
         <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"

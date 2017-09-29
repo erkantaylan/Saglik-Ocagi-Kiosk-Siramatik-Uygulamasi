@@ -7,7 +7,7 @@ namespace HealtCare.Kiosk.Views {
         public ExitView() {
             InitializeComponent();
             KioskOptions kioskOptions = KioskOptions.Load();
-            this.DataContext = new ExitViewModel(kioskOptions.ExitPassword);
+            DataContext = new ExitViewModel(kioskOptions.ExitPassword);
         }
     }
 

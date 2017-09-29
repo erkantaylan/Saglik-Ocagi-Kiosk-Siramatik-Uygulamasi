@@ -55,11 +55,11 @@ namespace HealtCare.Common.Models {
 
         [JsonIgnore]
         public List<Patient> Patients { get; set; } = new List<Patient>();
-        
+
         public static Doctor InitializeDoctor(string json) {
             return JsonConvert.DeserializeObject<Doctor>(json);
         }
-        
+
         public static void Save() {
             Saver<List<Doctor>>.Save(Doctors, MagicStrings.DoctorsTxtLocation);
         }

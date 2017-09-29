@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Input;
 using HealtCare.Common;
 using HealtCare.Common.Commands;
@@ -16,7 +15,7 @@ namespace HealtCare.Kiosk.ViewModels {
         private bool notAtVacation;
 
         public DoctorViewModel(Doctor doctor) {
-            this.DoctorInfo = doctor;
+            DoctorInfo = doctor;
             Name = doctor.Title + " " + doctor.Name;
             ImagePath = doctor.ImagePath;
             doctor.PropertyChanged += Doctor_PropertyChanged;

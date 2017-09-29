@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using HealtCare.Common.Commands;
 using HealtCare.Common.Models;
@@ -14,7 +13,7 @@ namespace HealtCare.Options.ViewModels {
         }
 
         public ObservableCollection<Doctor> Doctors { get; set; }
-        
+
         public ICommand RemoveCommand => new ActionCommand(Remove, CanRemove);
 
         private bool CanRemove(object obj) {
@@ -33,7 +32,7 @@ namespace HealtCare.Options.ViewModels {
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        private void OnPropertyChanged( string propertyName = null) {
+        private void OnPropertyChanged(string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

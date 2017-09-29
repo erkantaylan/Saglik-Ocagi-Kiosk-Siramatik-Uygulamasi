@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-             xmlns:viewModels="clr-namespace:HealtCare.DoctorApp.ViewModels"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
@@ -29,6 +28,6 @@
         <Button Content="GİRİŞ YAP" DockPanel.Dock="Top"
                 Command="{Binding Path=LoginCommand}" />
         <TextBox controls:TextBoxHelper.Watermark="Kiosk IP" DockPanel.Dock="Top"
-                 Text="{Binding Path=KioskIp, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=KioskIp, UpdateSourceTrigger=PropertyChanged}" />
     </DockPanel>
 </UserControl>
