@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
@@ -38,6 +39,7 @@ namespace HealtCare.DoctorApp.ViewModels {
             timer.Tick += (sender, args) => {
                 GetPatientsAsync();
             };
+            GetPatientsAsync();
             timer.Start();
         }
 
@@ -111,8 +113,23 @@ namespace HealtCare.DoctorApp.ViewModels {
                 () => {
                     string listJson = service.GetPatients(doctor.Id);
                     List<Patient> list = JsonConvert.DeserializeObject<List<Patient>>(listJson);
-                    Patients = new ObservableCollection<Patient>(list);
+                    if (Patients.Count != list.Count) {
+                        SetPatients(list);
+                    }
                 }).Start();
+        }
+
+        private void SetPatients(List<Patient> list) {
+            Patients = new ObservableCollection<Patient>(list);
+        }
+
+        private bool AreListsEqual(List<Patient> lst) {
+            for (int i = 0; i < Patients.Count; i++) {
+                if (Patients[i].No != lst[i].No) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void DisableKiosk(object obj) {

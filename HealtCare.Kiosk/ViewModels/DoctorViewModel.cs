@@ -8,6 +8,7 @@ using HealtCare.Common.Commands;
 using HealtCare.Common.Controllers;
 using HealtCare.Common.Models;
 using HealtCare.Kiosk.Annotations;
+using HealtCare.Kiosk.Controller;
 
 namespace HealtCare.Kiosk.ViewModels {
 
@@ -73,11 +74,16 @@ namespace HealtCare.Kiosk.ViewModels {
         }
 
         private void TakeLine(object obj) {
+            int patientNumber = GetPatientNumber();
             DoctorInfo.Patients.Add(
                 new Patient(
                     DoctorInfo.Id,
                     obj.ToString(),
-                    GetPatientNumber()));
+                    patientNumber));
+            PrinterController.Print(
+                $"{DoctorInfo.Title} {DoctorInfo.Name}",
+                patientNumber.ToString(),
+                KioskOptions.Load().HealtCareCenterName);
             PatientController.Save();
         }
 

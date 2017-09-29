@@ -4,6 +4,7 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                       mc:Ignorable="d"
                       ResizeMode="NoResize"
                       IsMinButtonEnabled="False"
@@ -15,45 +16,74 @@
                       ShowInTaskbar="False"
                       IgnoreTaskbarOnMaximize="True"
                       Height="1000" Width="1000">
-    <!--<Window.Resources>
-        <Storyboard x:Key="storyboard_textChanged">
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
-                                          Storyboard.TargetName="txtEkran">
+    <controls:MetroWindow.Resources>
+        <Storyboard x:Key="StoryboardTextChanged">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
                 <EasingColorKeyFrame KeyTime="0" Value="Black" />
                 <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Blue" />
                 <EasingColorKeyFrame KeyTime="0:0:0.4" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Blue" />
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Green" />
                 <EasingColorKeyFrame KeyTime="0:0:0.8" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:1.0" Value="Blue" />
+                <EasingColorKeyFrame KeyTime="0:0:1.0" Value="#139EDA" />
                 <EasingColorKeyFrame KeyTime="0:0:1.2" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:1.4" Value="Blue" />
-                <EasingColorKeyFrame KeyTime="0:0:1.6" Value="#FF870000" />
-            </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                                          Storyboard.TargetName="grid">
-                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="Blue" />
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:0.8" Value="Blue" />
-                <EasingColorKeyFrame KeyTime="0:0:1.0" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:1.2" Value="Blue" />
-                <EasingColorKeyFrame KeyTime="0:0:1.4" Value="Red" />
-                <EasingColorKeyFrame KeyTime="0:0:1.6" Value="#FF979B97" />
+                <EasingColorKeyFrame KeyTime="0:0:1.4" Value="Green" />
+                <EasingColorKeyFrame KeyTime="0:0:1.6" Value="Black" />
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
-    </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="TextCompositionManager.TextInput" SourceName="txtEkran">
-            <BeginStoryboard x:Name="storyboard_textChanged_BeginStoryboard"
-                             Storyboard="{StaticResource storyboard_textChanged}" />
+    </controls:MetroWindow.Resources>
+    <controls:MetroWindow.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardTextChanged}"/>
         </EventTrigger>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded" />
-    </Window.Triggers>-->
-    <DockPanel>
-        <TextBlock x:Name="TxtHealtCenterName" Text="{Binding Path=HealtCenterName}" />
-        <Viewbox>
-            <TextBox x:Name="TxtNumber" Text="{Binding Path=PatientNo}" />
-        </Viewbox>
-        <TextBlock x:Name="TxtMessage" Text="{Binding Path=Message}" />
+    </controls:MetroWindow.Triggers>
+
+    <DockPanel Background="DarkRed">
+        <Grid Background="Black" Margin="10">
+            <Grid.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="TextAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Background="DarkRed"
+                  Grid.Row="0"
+                  DockPanel.Dock="Top"
+                  Height="100">
+                <Viewbox>
+                    <TextBlock x:Name="TxtHealtCenterName"
+                               Text="{Binding Path=HealtCenterName}"
+                               Foreground="White" />
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1"
+                  x:Name="grid"
+                  Background="Black">
+                <Viewbox>
+                    <TextBox x:Name="TxtNumber"
+                             Foreground="White"
+                             BorderThickness="0"
+                             TextChanged="TxtNumber_OnTextChanged"
+                             Background="Transparent"
+                             IsReadOnly="True"
+                             TextAlignment="Center"
+                             Text="{Binding Path=PatientNo, NotifyOnTargetUpdated=True}">
+                    </TextBox>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2"
+                  VerticalAlignment="Bottom">
+                <TextBlock x:Name="TxtMessage"
+                           Foreground="White"
+                           FontSize="100"
+                           Text="{Binding Path=Message}"
+                           TextWrapping="Wrap" />
+            </Grid>
+        </Grid>
     </DockPanel>
 </controls:MetroWindow>

@@ -26,6 +26,9 @@
                  Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox controls:TextBoxHelper.Watermark="Parola" DockPanel.Dock="Top"
                  Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Content="GİRİŞ YAP" Command="{Binding Path=LoginCommand}" />
+        <Button Content="GİRİŞ YAP" DockPanel.Dock="Top"
+                Command="{Binding Path=LoginCommand}" />
+        <TextBox controls:TextBoxHelper.Watermark="Kiosk IP" DockPanel.Dock="Top"
+                 Text="{Binding Path=KioskIp, UpdateSourceTrigger=PropertyChanged}"/>
     </DockPanel>
 </UserControl>

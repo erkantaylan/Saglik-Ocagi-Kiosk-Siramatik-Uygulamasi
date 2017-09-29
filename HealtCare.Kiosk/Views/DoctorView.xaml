@@ -19,13 +19,6 @@
               VerticalAlignment="Top"
               controls:ControlsHelper.HeaderFontSize="24"
               IsEnabled="{Binding Path=NotAtVacation}">
-        <!--<GroupBox.HeaderTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding}" 
-                           Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=GroupBox}, Path=ActualWidth }"
-                           Background="#25A0DA" FontSize="18" Padding="5,0,0,0" Margin="1" Foreground="White"/>
-            </DataTemplate>
-        </GroupBox.HeaderTemplate>-->
         <DockPanel Background="#f4f4f4">
             <DockPanel Dock="Top">
                 <DockPanel DockPanel.Dock="Left">
